@@ -1,26 +1,545 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens — modelled on the Porbe template's system (Poppins, lavender
+ * section backgrounds, pill buttons, 1.25rem card radii) and recoloured with
+ * the two colours sampled from the original META logo (#223E92 / #FECD08).
+ */
+@theme {
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #223e92; /* META logo blue */
+  --color-brand-600: #2a4bb3;
+  --color-brand-500: #3157d1; /* brighter tint for bands and accents */
+  --color-brand-50: #eef2ff;
+  --color-accent: #fecd08; /* META logo yellow */
+  --color-accent-soft: #fff4c2;
+  --color-ink: #121d35; /* headings */
+  --color-body: #5b5e72; /* paragraph text */
+  /* Porbe's muted grey, darkened to meet WCAG AA contrast on light backgrounds */
+  --color-muted: #66657f;
+  --color-canvas: #f0f5ff; /* page background */
+  --color-canvas-2: #e6ecff;
+  --color-line: #d1e0ff;
+  --color-success: #16794a;
+  --color-danger: #b42318;
+
+  --radius-card: 1.25rem;
+  --radius-panel: 2rem;
+
+  --shadow-card: 0 1px 2px rgb(18 29 53 / 0.04), 0 12px 32px -12px rgb(34 62 146 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(18 29 53 / 0.05), 0 24px 48px -16px rgb(34 62 146 / 0.28);
+
+  --breakpoint-xs: 25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-ink);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 84.375rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  .section-pad {
+    padding-block: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-pad {
+      padding-block: 7.5rem;
+    }
+  }
+
+  .h-display {
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.125rem);
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  .h-section {
+    font-size: clamp(1.875rem, 1.35rem + 2.1vw, 2.75rem);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  .h-card {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  /* Long-form article and policy content */
+  .prose-meta {
+    color: var(--color-body);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .prose-meta > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose-meta h2 {
+    font-size: 1.75rem;
+    margin-top: 2.75rem;
+  }
+
+  .prose-meta h3 {
+    font-size: 1.375rem;
+    margin-top: 2.25rem;
+  }
+
+  .prose-meta ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .prose-meta ul li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .prose-meta ul li + li {
+    margin-top: 0.625rem;
+  }
+
+  .prose-meta ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 2px;
+    background: var(--color-brand-500);
+  }
+
+  .prose-meta strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .prose-meta a {
+    color: var(--color-brand-600);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion system                                                       */
+/* ------------------------------------------------------------------ */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes float-tilt {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--tilt, 0deg) * -0.4));
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.18) translate(-2%, -2%);
+  }
+}
+
+@keyframes globe-spin {
+  to {
+    transform: rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  60%,
+  100% {
+    transform: translateX(220%) skewX(-20deg);
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 58% 42% 38% 62% / 55% 61% 39% 45%;
+    transform: rotate(160deg) scale(1.08);
+  }
+}
+
+@keyframes gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em) rotateX(-70deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 38s linear infinite;
+  }
+  .animate-spin-slower {
+    animation: spin 60s linear infinite;
+  }
+  .animate-spin-rev {
+    animation: spin-reverse 46s linear infinite;
+  }
+  .animate-float {
+    animation: float-y 6s ease-in-out infinite;
+  }
+  .animate-float-tilt {
+    animation: float-tilt 7s ease-in-out infinite;
+  }
+  .animate-ripple {
+    animation: ripple 3.2s ease-out infinite;
+  }
+  .animate-marquee {
+    animation: marquee 36s linear infinite;
+  }
+  .animate-ken-burns {
+    animation: ken-burns 22s ease-in-out infinite alternate;
+  }
+  .animate-blob {
+    animation: blob 18s ease-in-out infinite;
+  }
+  .animate-gradient {
+    background-size: 220% 220%;
+    animation: gradient-pan 12s ease infinite;
+  }
+  .page-transition {
+    animation: page-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .word-in {
+    animation: word-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: 50% 100%;
+  }
+  .delay-1 {
+    animation-delay: 0.12s;
+  }
+  .delay-2 {
+    animation-delay: 0.24s;
+  }
+  .delay-3 {
+    animation-delay: 0.36s;
+  }
+  .delay-4 {
+    animation-delay: 0.48s;
+  }
+  .delay-5 {
+    animation-delay: 0.6s;
+  }
+
+  /* Counter-rotate children placed on a spinning orbit so they stay upright */
+  .orbit-upright-slow {
+    animation: spin-reverse 38s linear infinite;
+  }
+  .orbit-upright-rev {
+    animation: spin 46s linear infinite;
+  }
+
+  /* Glossy sweep across buttons */
+  .shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+    animation: shimmer 3.6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Scroll-linked progress bar */
+  .scroll-progress {
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+/*
+ * Scroll reveal — pure CSS scroll-driven animations (no hydration side effects).
+ * Variants: data-reveal="up" (default) | "left" | "right" | "zoom" | "flip" | "rotate".
+ * Browsers without animation-timeline support simply show content.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-flip {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(38deg) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-rotate {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateY(-30deg) translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes parallax-y {
+  from {
+    transform: translateY(-9%) scale(1.15);
+  }
+  to {
+    transform: translateY(9%) scale(1.15);
+  }
+}
+@keyframes grow-x {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    [data-reveal="left"] {
+      animation-name: reveal-left;
+    }
+    [data-reveal="right"] {
+      animation-name: reveal-right;
+    }
+    [data-reveal="zoom"] {
+      animation-name: reveal-zoom;
+    }
+    [data-reveal="flip"] {
+      animation-name: reveal-flip;
+    }
+    [data-reveal="rotate"] {
+      animation-name: reveal-rotate;
+    }
+    [data-parallax] {
+      animation: parallax-y linear both;
+      animation-timeline: view();
+    }
+    .scroll-progress {
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

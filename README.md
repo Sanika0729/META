@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# META — Merit Education & Training Academy website
 
-## Getting Started
+Rebuild of https://merittalentacademy.com in Next.js. **All text comes from the existing site** — presented in a Porbe-inspired academic design with a rich motion layer.
 
-First, run the development server:
+## Pages
+
+| URL | Content |
+| --- | --- |
+| `/` | Porbe Home V1 layout: hero arc, service finder, Our Services, Education Benefits, Who We Are, How META Supports the Process, Where We Work, mission, programs, Why META?, Success Stories |
+| `/about-us` | About Us, Mission, Vision, Core Values, services, Australia / India / UAE, our journey |
+| `/services` + `/services/skill-assessments`, `/services/pathway-programs`, `/services/vocational-training` | Original service copy plus detail drawn from META's published articles |
+| `/reviews` | Rating summary, carousel and topic-filtered list of the published success stories |
+| `/faq` | Searchable FAQ — every answer comes from META's published text |
+| `/contact-us` | Contact form (Name, Email, Phone, Subject, Message), address, email, phone |
+
+The blog has been removed. Old article URLs redirect to the pages that now hold their content
+(`/latest-news` → `/`, articles → About Us or the matching service page).
+
+To add a genuine review, append it to `content/testimonials.ts`; to add an FAQ, edit `content/faqs.ts`.
+
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run lint
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | Purpose |
+| --- | --- |
+| `content/home.ts` | Homepage, About and Services intro copy (verbatim from the original site) |
+| `content/services.ts`, `content/posts.ts`, `content/testimonials.ts` | Services, articles, success stories |
+| `content/images.ts` | Every image used, with alt text |
+| `lib/site.ts` | Business name, email, phone, address, menu |
+| `components/motion/` | Rotating rings and orbits, 3D globe, 3D tilt cards, counter, marquee, floating shapes |
+| `components/sections/` | Hero, testimonial carousel, CTA band, article layout |
+| `app/globals.css` | Design tokens, keyframes, scroll-linked reveal/parallax/progress animations |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Motion
 
-## Learn More
+Rotating and orbiting rings, CSS 3D wireframe globes, pointer-driven 3D tilt cards, a 3D cover-flow
+testimonial carousel, Ken Burns images, parallax backgrounds, scroll-linked reveals (up/left/right/zoom/flip),
+a scroll progress bar, word-by-word heading animation, a marquee ribbon, shine sweeps on buttons and a page
+transition on every navigation. Everything is CSS-first; visitors with "reduce motion" enabled get a static site.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form — configuration required before launch
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The form validates input and has a honeypot spam trap. It only shows "Thank you" when delivery succeeds;
+until a service is configured, visitors are told their message was **not** sent and shown META's email and phone.
+Copy `.env.example` to `.env.local` (or set in your host) and configure one option:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Purpose |
+| --- | --- |
+| `ENQUIRY_WEBHOOK_URL` | POST each enquiry as JSON (Zapier, Make, Formspree, CRM…) |
+| `RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `ENQUIRY_FROM_EMAIL` | Email each enquiry via Resend (verified sending domain required) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (defaults to `https://merittalentacademy.com`) |
 
-## Deploy on Vercel
+## Images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+META's own images are used wherever the original site used them. Additional education photography
+(graduates, library, lecture theatre, classrooms, culinary training) is from Unsplash and listed in
+`public/images/CREDITS.md`; replace with META's own photography when available.
