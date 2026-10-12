@@ -90,7 +90,7 @@ export function FaqExplorer({ groups }: { groups: FaqGroup[] }) {
               return (
                 <li
                   key={`${group}-${query}-${f.question}`}
-                  className={`word-in overflow-hidden rounded-[1.5rem] border bg-white transition-all duration-500 ${isOpen ? "border-brand-500/40 shadow-lift" : "border-line shadow-sm hover:shadow-card"}`}
+                  className={`word-in overflow-clip rounded-[1.5rem] border bg-white transition-all duration-500 ${isOpen ? "border-brand-500/40 shadow-lift" : "border-line shadow-sm hover:shadow-card"}`}
                   style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
                 >
                   <h2>
@@ -114,7 +114,7 @@ export function FaqExplorer({ groups }: { groups: FaqGroup[] }) {
                     id={panelId}
                     className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                   >
-                    <div className="overflow-hidden" inert={!isOpen}>
+                    <div className="overflow-clip" inert={!isOpen}>
                       <p className="px-5 pb-6 pl-[4.75rem] text-[0.9375rem] leading-7 md:px-7 md:pl-[5.25rem]">{f.answer}</p>
                     </div>
                   </div>

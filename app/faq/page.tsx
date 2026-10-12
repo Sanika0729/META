@@ -24,11 +24,11 @@ export const metadata = pageMetadata({
 export default function FaqPage() {
   return (
     <>
-      <PageHero title="Frequently Asked Questions" crumbs={[{ label: "FAQ" }]}>
+      <PageHero image="faq" title="Frequently Asked Questions" crumbs={[{ label: "FAQ" }]}>
         <p className="word-in delay-5 text-white/85">{allFaqs.length} answers about META and our services</p>
       </PageHero>
 
-      <section className="section-pad relative overflow-hidden">
+      <section className="section-pad relative overflow-clip">
         <FloatingShapes />
         <div aria-hidden="true" className="pointer-events-none absolute -right-60 top-24 size-[44rem] animate-spin-slower rounded-full border border-dashed border-brand-500/15" />
         <div className="container-site relative">
@@ -48,7 +48,7 @@ export default function FaqPage() {
       {/* Still have questions */}
       <section className="pb-20 md:pb-28">
         <div className="container-site">
-          <div className="relative isolate grid items-center gap-10 overflow-hidden rounded-[var(--radius-panel)] bg-ink p-8 text-white md:grid-cols-[auto_1fr_auto] md:p-12" data-reveal="flip">
+          <div data-stagger className="relative isolate grid items-center gap-10 overflow-clip rounded-[var(--radius-panel)] bg-ink p-8 text-white md:grid-cols-[auto_1fr_auto] md:p-12">
             <Rings tone="light" className="left-[10%] w-[30rem] opacity-50" />
             <div className="relative mx-auto grid size-28 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand">
               <Ripples tone="light" />

@@ -90,7 +90,7 @@ export function EnquiryForm({
       }}
     >
       {/* Honeypot for spam bots — hidden from people and assistive tech */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-clip">
         <label htmlFor="contact-company_website">Company website</label>
         <input id="contact-company_website" type="text" name="company_website" tabIndex={-1} autoComplete="off" />
       </div>

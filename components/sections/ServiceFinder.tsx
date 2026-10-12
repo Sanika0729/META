@@ -13,7 +13,7 @@ export function ServiceFinder({ options }: { options: { href: string; label: str
   const [value, setValue] = useState(options[0].href);
 
   return (
-    <div className="relative overflow-hidden rounded-[1.75rem] bg-ink p-5 text-white shadow-lift md:p-7 lg:p-8">
+    <div className="relative overflow-clip rounded-[1.75rem] bg-ink p-5 text-white shadow-lift md:p-7 lg:p-8">
       <span aria-hidden="true" className="absolute -right-20 -top-20 size-56 animate-spin-slow rounded-full border-2 border-dashed border-white/10" />
       <span aria-hidden="true" className="absolute -bottom-24 left-1/3 size-48 animate-blob bg-brand-500/25" />
       <div className="relative grid gap-6 md:grid-cols-[1.5fr_1fr] md:gap-8">

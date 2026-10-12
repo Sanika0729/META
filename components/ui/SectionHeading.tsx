@@ -37,7 +37,7 @@ export function SectionHeading({
   const centered = align === "center";
   return (
     <div
-      data-reveal
+      data-stagger
       className={`flex flex-col gap-4 ${centered ? "mx-auto max-w-3xl items-center text-center" : "max-w-2xl"} ${className}`}
     >
       {tag && <SectionTag tone={tone}>{tag}</SectionTag>}

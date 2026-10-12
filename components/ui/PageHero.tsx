@@ -2,20 +2,38 @@ import Image from "next/image";
 
 import { FloatingShapes } from "@/components/motion/FloatingShapes";
 import { Rings } from "@/components/motion/Rings";
-import { images } from "@/content/images";
+import { heroImages, type HeroKey } from "@/content/images";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
 /**
- * Inner-page banner. The original site used `inner-bg.jpg` behind the page title;
- * here it gets a slow Ken Burns zoom, a brand overlay, rotating rings and floating shapes.
+ * Inner-page banner with a page-specific HD background, slow Ken Burns zoom,
+ * brand overlay, rotating rings and floating shapes.
  */
-export function PageHero({ title, crumbs, children }: { title: string; crumbs: Crumb[]; children?: React.ReactNode }) {
+export function PageHero({
+  title,
+  crumbs,
+  image,
+  focus = "center",
+  zoom = true,
+  children,
+}: {
+  title: string;
+  crumbs: Crumb[];
+  /** Which themed background to show — every page has its own. */
+  image: HeroKey;
+  /** CSS object-position for the background photo. */
+  focus?: string;
+  /** Slow Ken Burns zoom; turn off when the whole photo must stay in frame. */
+  zoom?: boolean;
+  children?: React.ReactNode;
+}) {
   const words = title.split(" ");
   return (
     <section className="px-3 pt-4 md:px-5">
-      <div className="relative isolate mx-auto max-w-[90rem] overflow-hidden rounded-[var(--radius-panel)] px-4 py-20 text-center md:py-28">
-        <Image src={images.booksGlobe.src} alt="" fill loading="eager" sizes="100vw" className="-z-20 animate-ken-burns object-cover" placeholder="blur" />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-ink/85 via-brand/80 to-brand-500/70" />
+      <div className="relative isolate mx-auto max-w-[90rem] overflow-clip rounded-[var(--radius-panel)] px-4 py-20 text-center md:py-28">
+        <Image src={heroImages[image]} alt="" fill loading="eager" fetchPriority="high" quality={90} sizes="(min-width: 1440px) 1440px, 100vw" className={`-z-20 object-cover ${zoom ? "animate-ken-burns" : ""}`} style={{ objectPosition: focus }} placeholder="blur" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/50 to-brand/30" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgb(18_29_53/0.45),transparent_70%)]" />
         <Rings tone="light" className="w-[42rem] opacity-70" />
         <FloatingShapes tone="light" />
         <div className="relative flex flex-col items-center gap-5">

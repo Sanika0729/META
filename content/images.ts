@@ -1,17 +1,9 @@
 import type { StaticImageData } from "next/image";
 
-// Images published on the existing META website
+// Image published on the existing META website (homepage banner)
 import slideGlobe from "@/public/images/meta/slide1.jpg";
-import australiaStudents from "@/public/images/meta/hpsec2-bg.jpg";
-import graduationBg from "@/public/images/meta/testi-bg.jpg";
-import booksGlobe from "@/public/images/meta/inner-bg.jpg";
-import adviser from "@/public/images/meta/hpimg1.jpg";
-import studying from "@/public/images/meta/abtimg1.jpg";
-import lectureHall from "@/public/images/meta/abtimg2.jpg";
-import assessment from "@/public/images/meta/img3.jpg";
-import coaching from "@/public/images/meta/blog-1.jpg";
 
-// Education photography (Unsplash licence) — see public/images/CREDITS.md
+// High-resolution education photography (Unsplash licence, 2560px) — see public/images/CREDITS.md
 import academicsGraduates from "@/public/images/stock/academics-graduates.jpg";
 import graduatesCaps from "@/public/images/stock/graduates-caps.jpg";
 import libraryHall from "@/public/images/stock/library-hall.jpg";
@@ -20,6 +12,20 @@ import lectureTheatre from "@/public/images/stock/lecture-theatre.jpg";
 import studentsClassroom from "@/public/images/stock/students-classroom.jpg";
 import chefTrainees from "@/public/images/stock/chef-trainees.jpg";
 import culinaryStudents from "@/public/images/stock/culinary-students.jpg";
+import adviser from "@/public/images/stock/adviser.jpg";
+import studying from "@/public/images/stock/studying.jpg";
+import lectureHall from "@/public/images/stock/lecture-hall.jpg";
+import tradesAssessment from "@/public/images/stock/trades-assessment.jpg";
+
+// Page header backgrounds — one per page, matched to its theme
+import heroAbout from "@/public/images/hero/about.jpg";
+import heroServices from "@/public/images/hero/services.jpg";
+import heroSkills from "@/public/images/hero/skill-assessments.jpg";
+import heroPathways from "@/public/images/hero/pathway-programs.jpg";
+import heroVocational from "@/public/images/hero/vocational-training.jpg";
+import heroReviews from "@/public/images/hero/reviews.jpg";
+import heroFaq from "@/public/images/hero/faq.jpg";
+import heroContact from "@/public/images/hero/contact.jpg";
 
 export type SiteImage = { src: StaticImageData; alt: string };
 
@@ -27,14 +33,12 @@ const img = (src: StaticImageData, alt: string): SiteImage => ({ src, alt });
 
 export const images = {
   slideGlobe: img(slideGlobe, "Graduation cap resting on a globe beside a stack of books"),
-  australiaStudents: img(australiaStudents, "Students walking in an Australian city beside an Australian flag"),
-  graduationBg: img(graduationBg, "Graduate in a gown celebrating in front of an audience"),
-  booksGlobe: img(booksGlobe, "Books, a globe and coloured pencils on a classroom desk"),
-  adviser: img(adviser, "Smiling education adviser working at a laptop"),
-  studying: img(studying, "Students taking notes together over open books"),
-  lectureHall: img(lectureHall, "Student with a backpack standing in a lecture hall"),
-  assessment: img(assessment, "Hands on a laptop keyboard with skills assessment icons"),
-  coaching: img(coaching, "Presenter coaching a group around a meeting table"),
+  australiaStudents: img(heroPathways, "Sandstone quadrangle of an Australian university"),
+  graduationBg: img(graduatesCaps, "Graduates in academic gowns throwing their caps in the air"),
+  adviser: img(adviser, "Education adviser in conversation with a student"),
+  studying: img(studying, "Student writing notes beside open books"),
+  lectureHall: img(lectureHall, "Students seated in a modern university lecture hall"),
+  assessment: img(tradesAssessment, "Electrician in a hard hat carrying out practical electrical work"),
 
   academicsGraduates: img(academicsGraduates, "Graduates raising their caps beneath an archway marked Academics"),
   graduatesCaps: img(graduatesCaps, "Graduates in academic gowns throwing their caps in the air"),
@@ -45,3 +49,17 @@ export const images = {
   chefTrainees: img(chefTrainees, "Culinary trainees in chef whites cooking in a training kitchen"),
   culinaryStudents: img(culinaryStudents, "Students in uniform practising cooking in a training kitchen"),
 } satisfies Record<string, SiteImage>;
+
+/** Page header backgrounds. */
+export const heroImages = {
+  about: heroAbout,
+  services: heroServices,
+  "skill-assessments": heroSkills,
+  "pathway-programs": heroPathways,
+  "vocational-training": heroVocational,
+  reviews: heroReviews,
+  faq: heroFaq,
+  contact: heroContact,
+} satisfies Record<string, StaticImageData>;
+
+export type HeroKey = keyof typeof heroImages;

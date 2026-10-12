@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  // 90 is used for full-width header and band photos so they stay crisp.
+  images: {
+    qualities: [75, 90],
+  },
   turbopack: {
     rules: {
       "*.css": {

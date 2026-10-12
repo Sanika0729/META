@@ -8,7 +8,7 @@ import { Logo } from "./Logo";
 /** Footer content from the original site: About Us, Quick Links, Address. */
 export function Footer() {
   return (
-    <footer className="relative mt-auto overflow-hidden border-t border-line bg-canvas pt-16 md:pt-20">
+    <footer className="relative mt-auto overflow-clip border-t border-line bg-canvas pt-16 md:pt-20">
       <Rings className="-right-40 left-auto top-10 w-[34rem] translate-x-0 opacity-60" />
       <div className="container-site relative grid gap-12 pb-12 md:grid-cols-3 lg:gap-16">
         <div className="flex flex-col gap-5" data-reveal="left">

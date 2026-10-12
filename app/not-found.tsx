@@ -19,7 +19,7 @@ const links = [
 export default function NotFound() {
   return (
     <section className="py-20 md:py-32">
-      <div className="container-site flex flex-col items-center gap-6 text-center">
+      <div data-stagger className="container-site flex flex-col items-center gap-6 text-center">
         <svg aria-hidden="true" viewBox="0 0 300 120" className="w-[min(80vw,26rem)] text-brand-500/15">
           <text x="150" y="105" textAnchor="middle" fill="currentColor" fontSize="128" fontWeight="600">
             404

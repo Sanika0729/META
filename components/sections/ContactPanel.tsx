@@ -78,11 +78,11 @@ export function ContactPanel() {
   const [active, setActive] = useState(categories[0]);
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+    <div data-stagger className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
       <div className="min-w-0">
         <h2 className="mb-2 text-2xl font-semibold md:text-3xl">What can we help with?</h2>
         <p className="mb-6 text-[0.9375rem]">Choose a topic to see what’s helpful to include.</p>
-        <div role="tablist" aria-label="Enquiry topic" className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div data-stagger role="tablist" aria-label="Enquiry topic" className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {categories.map((c, i) => {
             const on = c.id === active.id;
             return (
@@ -93,7 +93,7 @@ export function ContactPanel() {
                 aria-selected={on}
                 aria-controls="topic-detail"
                 onClick={() => setActive(c)}
-                className={`group relative flex min-h-28 flex-col items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
+                className={`group relative flex min-h-28 flex-col items-start gap-3 overflow-clip rounded-2xl border p-4 text-left transition-all duration-300 ${
                   on ? "border-brand-500 bg-brand-500 text-white shadow-lift" : "border-line bg-white text-ink hover:-translate-y-1 hover:shadow-card"
                 }`}
               >

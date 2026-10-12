@@ -30,7 +30,7 @@ const chips: { label: string; href: string; icon: IconName; pos: string; delay: 
 export function HomeHero() {
   const [l1, l2, l3] = home.hero.title;
   return (
-    <section className="relative overflow-hidden pt-8 md:pt-12">
+    <section className="relative overflow-clip pt-8 md:pt-12">
       <FloatingShapes />
       <div className="container-site relative">
         {/* Arc + rotating rings */}
@@ -69,21 +69,21 @@ export function HomeHero() {
           <Globe3D className="absolute -top-2 left-1/2 hidden size-20 -translate-x-[220%] md:block" />
           <div className="word-in absolute bottom-3 left-[1%] w-[33%] sm:left-[6%]" style={{ animationDelay: "150ms" }}>
             <TiltCard max={14}>
-              <div className="relative aspect-[3/4] -rotate-[9deg] overflow-hidden rounded-2xl border-[6px] border-white shadow-lift">
+              <div className="relative aspect-[3/4] -rotate-[9deg] overflow-clip rounded-2xl border-[6px] border-white shadow-lift">
                 <Image src={images.studying.src} alt={images.studying.alt} fill loading="eager" sizes="(min-width: 768px) 240px, 33vw" className="object-cover" placeholder="blur" />
               </div>
             </TiltCard>
           </div>
           <div className="word-in absolute bottom-3 right-[1%] w-[33%] sm:right-[6%]" style={{ animationDelay: "250ms" }}>
             <TiltCard max={14}>
-              <div className="relative aspect-[3/4] rotate-[9deg] overflow-hidden rounded-2xl border-[6px] border-white shadow-lift">
+              <div className="relative aspect-[3/4] rotate-[9deg] overflow-clip rounded-2xl border-[6px] border-white shadow-lift">
                 <Image src={images.culinaryStudents.src} alt={images.culinaryStudents.alt} fill loading="eager" sizes="(min-width: 768px) 240px, 33vw" className="object-cover" placeholder="blur" />
               </div>
             </TiltCard>
           </div>
           <div className="word-in relative z-10 w-[38%]" style={{ animationDelay: "50ms" }}>
             <TiltCard max={14}>
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-[6px] border-white shadow-lift">
+              <div className="relative aspect-[3/4] overflow-clip rounded-2xl border-[6px] border-white shadow-lift">
                 <Image src={images.academicsGraduates.src} alt={images.academicsGraduates.alt} fill loading="eager" fetchPriority="high" sizes="(min-width: 768px) 280px, 38vw" className="animate-ken-burns object-cover" placeholder="blur" />
               </div>
             </TiltCard>

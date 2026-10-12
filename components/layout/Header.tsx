@@ -9,7 +9,7 @@ import { NavMenu, NavMenuWithPath } from "./NavMenu";
 /** Top strip from the original site: "Are you interested in Online Learning? Contact Us" · About Us | Membership */
 function TopBar() {
   return (
-    <aside aria-label="Site notice" className="relative overflow-hidden bg-ink text-[0.8125rem] text-white/85">
+    <aside aria-label="Site notice" className="relative overflow-clip bg-ink text-[0.8125rem] text-white/85">
       <div aria-hidden="true" className="absolute inset-0 animate-gradient bg-[linear-gradient(110deg,#121d35,#223e92,#121d35,#2a4bb3)] opacity-60" />
       <div className="container-site relative flex min-h-10 flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2">
         <p>

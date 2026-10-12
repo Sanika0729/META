@@ -22,7 +22,7 @@ export function CTASection() {
       <div className="container-site">
         <div
           data-reveal="zoom"
-          className="relative isolate overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-b from-[#dbe3ff] via-brand-500 to-brand px-6 pb-16 pt-56 text-center md:px-12 md:pb-20 md:pt-72"
+          className="relative isolate overflow-clip rounded-[var(--radius-panel)] bg-gradient-to-b from-[#dbe3ff] via-brand-500 to-brand px-6 pb-16 pt-56 text-center md:px-12 md:pb-20 md:pt-72"
         >
           <Rings tone="light" className="top-[78%] w-[52rem] opacity-80" />
           <Globe3D tone="light" className="absolute left-1/2 top-[10%] size-24 -translate-x-1/2 md:size-32" />
@@ -30,13 +30,13 @@ export function CTASection() {
             <div
               key={i}
               aria-hidden="true"
-              className={`absolute animate-float overflow-hidden rounded-full border-4 border-white/70 shadow-lift ${cls}`}
+              className={`absolute animate-float overflow-clip rounded-full border-4 border-white/70 shadow-lift ${cls}`}
               style={{ animationDelay: delay }}
             >
               <Image src={img.src} alt="" fill sizes="128px" className="object-cover" />
             </div>
           ))}
-          <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-7">
+          <div data-stagger className="relative mx-auto flex max-w-2xl flex-col items-center gap-7">
             <h2 id="cta-heading" className="h-section text-white">
               {about.cta.title}
             </h2>

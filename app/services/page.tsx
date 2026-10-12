@@ -24,22 +24,22 @@ export const metadata = pageMetadata({
 export default function ServicesPage() {
   return (
     <>
-      <PageHero title="Services" crumbs={[{ label: "Services" }]}>
+      <PageHero image="services" title="Services" crumbs={[{ label: "Services" }]}>
         <p className="word-in delay-4 max-w-3xl text-base text-white/85 md:text-lg">{servicesIntro}</p>
       </PageHero>
 
-      <div className="relative flex flex-col gap-24 overflow-hidden py-20 md:gap-32 md:py-28">
+      <div data-stagger className="relative flex flex-col gap-24 overflow-clip py-20 md:gap-32 md:py-28">
         <FloatingShapes />
         {services.map((service, i) => {
           const flip = i % 2 === 1;
           return (
             <section key={service.slug} id={service.slug} className="relative scroll-mt-28" aria-labelledby={`${service.slug}-title`}>
-              <div className="container-site grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+              <div data-stagger className="container-site grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
                 <div className={`relative mx-auto aspect-[5/4] w-full max-w-xl ${flip ? "lg:order-2" : ""}`} data-reveal={flip ? "right" : "left"}>
                   <Rings className={`w-[115%] ${flip ? "left-[60%]" : "left-[40%]"}`} />
                   <span className={`absolute ${flip ? "-left-6" : "-right-6"} -top-6 size-40 animate-blob bg-accent/80`} aria-hidden="true" />
                   <TiltCard className="absolute inset-0" max={10}>
-                    <div className="relative size-full overflow-hidden rounded-[2.5rem] border-8 border-white shadow-lift">
+                    <div className="relative size-full overflow-clip rounded-[2.5rem] border-8 border-white shadow-lift">
                       <Image src={service.image.src} alt={service.image.alt} fill sizes="(min-width: 1024px) 580px, 100vw" className="animate-ken-burns object-cover" placeholder="blur" />
                       <div className="absolute inset-0 bg-gradient-to-tr from-brand/35 to-transparent" />
                     </div>
@@ -51,7 +51,7 @@ export default function ServicesPage() {
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-5" data-reveal={flip ? "left" : "right"}>
+                <div data-stagger className="flex flex-col gap-5">
                   <span data-num={`0${i + 1}`} className="text-6xl font-bold leading-none text-brand-500/15 before:content-[attr(data-num)]" aria-hidden="true" />
                   <h2 id={`${service.slug}-title`} className="h-section -mt-6">
                     {service.title}

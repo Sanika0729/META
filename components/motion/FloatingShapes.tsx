@@ -3,7 +3,7 @@ export function FloatingShapes({ tone = "brand", className = "" }: { tone?: "bra
   const stroke = tone === "light" ? "border-white/35" : "border-brand-500/30";
   const fill = tone === "light" ? "bg-white/25" : "bg-brand-500/20";
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
+    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-clip ${className}`}>
       <span className={`absolute left-[6%] top-[14%] size-16 animate-float rounded-full border-4 ${stroke}`} />
       <span className={`absolute right-[8%] top-[22%] size-5 animate-float rounded-full ${fill}`} style={{ animationDelay: "1.2s" }} />
       <span className="absolute bottom-[16%] left-[12%] size-4 animate-float rounded-full bg-accent/70" style={{ animationDelay: "2s" }} />

@@ -32,18 +32,18 @@ const channels = [
 export default function ContactPage() {
   return (
     <>
-      <PageHero title="Contact Us" crumbs={[{ label: "Contact Us" }]}>
+      <PageHero image="contact" title="Contact Us" crumbs={[{ label: "Contact Us" }]}>
         <p className="word-in delay-5 max-w-2xl text-white/85">
           Contact us for skill assessments, pathways and vocational training enquiries.
         </p>
       </PageHero>
 
       {/* Contact channels */}
-      <section className="relative -mt-2 overflow-hidden pt-14 md:pt-20">
-        <div className="container-site relative grid gap-6 md:grid-cols-3">
+      <section className="relative -mt-2 overflow-clip pt-14 md:pt-20">
+        <div data-stagger className="container-site relative grid gap-6 md:grid-cols-3">
           {channels.map(({ icon: ChannelIcon, label, value, href, action }, i) => {
             const inner = (
-              <div className="group relative flex h-full flex-col items-center gap-4 overflow-hidden rounded-[2rem] border border-line bg-white p-8 text-center shadow-card transition-shadow duration-500 hover:shadow-lift">
+              <div data-stagger className="group relative flex h-full flex-col items-center gap-4 overflow-clip rounded-[2rem] border border-line bg-white p-8 text-center shadow-card transition-shadow duration-500 hover:shadow-lift">
                 <span aria-hidden="true" className="absolute -right-10 -top-10 size-32 animate-spin-slow rounded-full border-2 border-dashed border-brand-500/15" />
                 <span className={`relative grid size-16 place-items-center rounded-full ${i === 1 ? "bg-accent text-ink" : "bg-brand-500 text-white"}`}>
                   <Ripples />
@@ -72,7 +72,7 @@ export default function ContactPage() {
       </section>
 
       {/* Topic tiles + form */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-clip py-20 md:py-28">
         <FloatingShapes />
         <div className="container-site relative">
           <ContactPanel />
@@ -80,14 +80,14 @@ export default function ContactPage() {
       </section>
 
       {/* Office */}
-      <section className="relative isolate overflow-hidden py-24 text-white md:py-32" aria-labelledby="office-heading">
-        <div className="absolute inset-0 -z-20 overflow-hidden">
-          <Image data-parallax src={images.australiaStudents.src} alt="" fill sizes="100vw" className="object-cover" placeholder="blur" />
+      <section className="relative isolate overflow-clip py-24 text-white md:py-32" aria-labelledby="office-heading">
+        <div className="absolute inset-0 -z-20 overflow-clip">
+          <Image data-parallax quality={90} src={images.australiaStudents.src} alt="" fill sizes="100vw" className="object-cover" placeholder="blur" />
         </div>
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-brand/90 to-brand-500/80" />
         <FloatingShapes tone="light" />
-        <div className="container-site relative grid items-center gap-12 lg:grid-cols-2">
-          <div className="flex flex-col gap-6" data-reveal="left">
+        <div data-stagger className="container-site relative grid items-center gap-12 lg:grid-cols-2">
+          <div data-stagger className="flex flex-col gap-6">
             <SectionHeading align="left" tone="inverse" tag="Our Office" title={<span id="office-heading">Australian-Registered, Working Across Borders</span>} />
             <p className="text-white/85 md:text-lg">
               Expanding from Australia into India and the UAE, META supports both domestic and international clients.
@@ -123,13 +123,13 @@ export default function ContactPage() {
       </section>
 
       {/* Before you get in touch */}
-      <section className="section-pad relative overflow-hidden" aria-labelledby="before-heading">
+      <section className="section-pad relative overflow-clip" aria-labelledby="before-heading">
         <div className="container-site relative">
           <SectionHeading tag="Before You Get in Touch" title={<span id="before-heading">Read More About Our Services</span>} />
           <div className="mt-12">
             <ServiceLinks />
           </div>
-          <div className="mt-8 flex flex-col items-center gap-4 rounded-[var(--radius-card)] border border-line bg-white/80 p-7 text-center shadow-card sm:flex-row sm:text-left" data-reveal>
+          <div data-stagger className="mt-8 flex flex-col items-center gap-4 rounded-[var(--radius-card)] border border-line bg-white/80 p-7 text-center shadow-card sm:flex-row sm:text-left">
             <span className="grid size-12 shrink-0 place-items-center rounded-full bg-accent text-ink">
               <MessageCircleQuestion className="size-6" aria-hidden="true" />
             </span>
