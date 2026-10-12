@@ -149,14 +149,14 @@ export function ReviewCard({ review }: { review: Testimonial }) {
     .slice(0, 2);
   return (
     <TiltCard className="h-full" max={6}>
-      <figure className="group relative flex h-full flex-col overflow-clip rounded-[var(--radius-panel)] border border-line bg-white p-7 shadow-card transition-shadow duration-500 hover:shadow-lift md:p-9">
+      <figure className="group relative flex h-full flex-col overflow-clip rounded-[var(--radius-panel)] border border-line bg-white p-7 shadow-card transition-shadow duration-500 hover:shadow-lift md:p-8 xl:p-9">
         <span aria-hidden="true" className="absolute -right-12 -top-12 size-40 animate-spin-slow rounded-full border-2 border-dashed border-brand-500/15" />
         <div className="mb-6 flex items-center justify-between gap-4">
           <Stars rating={review.rating} />
           <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-600">{review.topic}</span>
         </div>
         <Quote className="mb-4 size-10 fill-accent text-accent transition-transform duration-500 group-hover:-rotate-12" aria-hidden="true" />
-        <blockquote className="flex-1 text-[1.0625rem] leading-8 text-ink/85">
+        <blockquote className="flex-1 text-base leading-7 text-ink/85 xl:text-[1.0625rem] xl:leading-8">
           <p>{review.quote}</p>
         </blockquote>
         <figcaption className="mt-8 flex items-center gap-4 border-t border-line pt-6">

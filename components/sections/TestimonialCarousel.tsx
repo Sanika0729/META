@@ -47,9 +47,10 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
               className={`absolute inset-x-0 top-0 mx-auto flex w-full max-w-2xl flex-col ${isActive ? "" : "max-md:opacity-0!"} rounded-[var(--radius-panel)] border border-white/25 bg-white/12 p-7 text-white shadow-lift backdrop-blur-md transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:p-10`}
               style={{
                 transform: `translateX(${offset * 62}%) translateZ(${isActive ? 0 : -260}px) rotateY(${offset * -32}deg)`,
-                opacity: isActive ? 1 : 0.35,
+                opacity: isActive ? 1 : Math.abs(offset) <= 1 ? 0.35 : 0,
                 zIndex: isActive ? 2 : 1,
                 pointerEvents: isActive ? "auto" : "none",
+                visibility: Math.abs(offset) <= 1 ? "visible" : "hidden",
               }}
             >
               <Quote className="mb-5 size-10 fill-accent text-accent" aria-hidden="true" />
@@ -81,7 +82,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
         >
           <ChevronLeft className="size-5" aria-hidden="true" />
         </button>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap justify-center gap-2 max-w-full px-2">
           {items.map((t, i) => (
             <button
               key={t.name}

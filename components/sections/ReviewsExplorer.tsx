@@ -35,7 +35,7 @@ export function ReviewsExplorer({ reviews }: { reviews: Testimonial[] }) {
           );
         })}
       </div>
-      <div id="reviews-panel" role="tabpanel" className="grid gap-7 lg:grid-cols-2">
+      <div id="reviews-panel" role="tabpanel" className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
         {shown.map((r, i) => (
           <div key={`${topic}-${r.name}`} className="word-in h-full" style={{ animationDelay: `${i * 110}ms` }}>
             <ReviewCard review={r} />
